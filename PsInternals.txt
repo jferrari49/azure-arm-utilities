@@ -1,0 +1,8 @@
+curl https://stsjmf49operations1.blob.core.windows.net/files/psping.exe --output psping.exe
+
+New-Item -Path "HKCU:\Software\Sysinternals\PsPing" -Force | Out-Null
+New-ItemProperty -Path "HKCU:\Software\Sysinternals\PsPing" -Name "EulaAccepted" -Value "1" -PropertyType DWORD -Force | Out-Null
+
+psping -s 10.0.0.4:500
+
+psping -l 8k -n 10000 -h 100 10.0.0.4:500
